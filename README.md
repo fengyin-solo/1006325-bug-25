@@ -68,4 +68,10 @@ npm run build
 - 字段、状态、动作与流转目标集中在 `frontend/src/data/modules.ts`；示例数据在
   `frontend/src/data/seed.ts`。
 - 状态流转只允许在 `local-service.ts` 里改，页面组件不做业务判断。
-- 想回到初始数据：清掉浏览器里 `urban-utility-tunnel:entries` 这一项，或调用 `resetModule(模块)`。
+- 门禁安防另有专属写入服务 `frontend/src/api/access-service.ts`：按出入口责任岗位授权、
+  检查结论按「点位+检查日期」upsert、整改联动隐患清单/值班交接清单、持久化同步队列断点续传；
+  存量台账的对齐方案见 `frontend/docs/access-security-hardening.md`，
+  口径验证用 `node frontend/scripts/access-smoke.mjs`。
+- 想回到初始数据：清掉浏览器里 `urban-utility-tunnel:entries` 这一项（门禁域还会用到
+  `urban-utility-tunnel:access-checks`、`:access-sync-queue`、`:access-sync-state`、
+  `:migrations`、`:schema-version`），或调用 `resetModule(模块)`。

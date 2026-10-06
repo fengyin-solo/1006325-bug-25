@@ -71,7 +71,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, onMounted, ref } from 'vue'
+import { computed, onMounted, onUnmounted, ref } from 'vue'
 
 import {
   downloadEntries,
@@ -79,13 +79,18 @@ import {
   moduleMeta,
   runAction as applyAction,
 } from '@/api/local-service'
+import { subscribeStore } from '@/data/local-store'
 import type { EntryRow } from '@/data/types'
 
 const meta = moduleMeta('hazard')
 const columns = ["隐患编号", "隐患部位", "隐患等级", "整改措施", "责任人员", "发现日期", "整改期限", "整改状态"]
 const actions = ["派发整改", "提交验收", "标记逾期"]
 const statuses = ["待整改", "整改中", "已验收", "已逾期"]
-const stats = [{"label": "待整改隐患", "value": 0}, {"label": "整改中隐患", "value": 0}, {"label": "已逾期隐患", "value": 0}]
+const stats = computed(() => [
+  { label: "待整改隐患", value: rows.value.filter((row) => String(row.status) === "待整改").length },
+  { label: "整改中隐患", value: rows.value.filter((row) => String(row.status) === "整改中").length },
+  { label: "已逾期隐患", value: rows.value.filter((row) => String(row.status) === "已逾期").length },
+])
 
 const rows = ref<EntryRow[]>([])
 const total = ref(0)
@@ -134,4 +139,12 @@ function reload() {
 }
 
 onMounted(reload)
+
+// 门禁侧提出整改后，隐患清单随变更即时刷新，结论落库即可见。
+const unsubscribe = subscribeStore((change) => {
+  if (change.scope === 'sync' || (change.scope === 'entries' && (change.key === 'hazard' || change.key === '*'))) {
+    reload()
+  }
+})
+onUnmounted(unsubscribe)
 </script>

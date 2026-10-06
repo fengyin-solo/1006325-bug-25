@@ -35,3 +35,38 @@ body { margin: 0; background: #f6f8fb; color: #1f2937; }
 .error-text { color: #b42318; }
 .status-legend { display: flex; flex-wrap: wrap; gap: 12px; margin: 0 0 10px; font-size: 12px; color: var(--muted); }
 .legend-item { background: #eef2f7; border-radius: 999px; padding: 2px 10px; }
+
+/* 门禁安防：同步条、详情面板、交接面板、迁移面板 */
+.sync-bar { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; background: #fff; border: 1px solid var(--border); border-radius: 8px; padding: 8px 12px; margin-bottom: 12px; font-size: 13px; }
+.sync-dot { width: 10px; height: 10px; border-radius: 50%; display: inline-block; }
+.sync-dot.online { background: #12b76a; }
+.sync-dot.offline { background: #d92d20; }
+.sync-toggle { display: flex; align-items: center; gap: 4px; color: var(--muted); }
+.sync-msg { color: var(--brand); }
+.btn:disabled { opacity: .5; cursor: not-allowed; }
+.readonly-tag { color: var(--muted); font-size: 12px; }
+.data-table tr.selected td { background: #eef4ff; }
+.data-table tr.synced-row td { background: #f3fbf6; }
+.detail-panel { margin-top: 16px; background: #fff; border: 1px solid var(--border); border-radius: 8px; padding: 14px 16px; }
+.detail-head { display: flex; justify-content: space-between; align-items: center; }
+.detail-grid { display: grid; grid-template-columns: 140px 1fr 140px 1fr; gap: 6px 12px; margin: 10px 0; font-size: 13px; }
+.detail-grid dt { color: var(--muted); }
+.detail-grid dd { margin: 0; }
+.readonly-note { background: #fff7ed; border: 1px solid #fed7aa; color: #9a3412; border-radius: 6px; padding: 8px 10px; font-size: 13px; }
+.check-form { border-top: 1px dashed var(--border); padding-top: 10px; }
+.check-form label { display: inline-flex; flex-direction: column; gap: 4px; font-size: 12px; color: var(--muted); margin: 6px 12px 6px 0; }
+.check-form label.wide { display: flex; width: 100%; }
+.check-form input, .check-form select, .check-form textarea { font: inherit; padding: 5px 8px; border: 1px solid var(--border); border-radius: 6px; color: #1f2937; }
+.form-actions { display: flex; align-items: center; gap: 12px; margin-top: 6px; }
+.ok-text { color: #067647; font-size: 13px; }
+.check-history { margin-top: 12px; font-size: 13px; }
+.check-history ul { margin: 6px 0; padding-left: 18px; }
+.muted { color: var(--muted); font-size: 12px; }
+.handover-panel, .migration-panel { margin-top: 16px; background: #fff; border: 1px solid var(--border); border-radius: 8px; padding: 12px 16px; }
+.handover-panel h3, .migration-panel summary { font-size: 14px; }
+.handover-panel h3 small { color: var(--muted); font-weight: normal; }
+.inner-table { margin-top: 8px; }
+.batch-block { font-size: 13px; margin: 4px 0; }
+.migration-list { font-size: 12px; color: var(--muted); padding-left: 18px; }
+.identity-switch { margin-left: 10px; }
+.identity-switch select { font: inherit; margin-left: 4px; }
